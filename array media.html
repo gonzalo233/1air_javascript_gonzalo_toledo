@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calcular Media y Notas Aprobadas</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Calcular Media y Notas Aprobadas</h1>
+
+    <p>Ingresa las notas separadas por coma (por ejemplo, 75, 85, 90):</p>
+    <input type="text" id="notasInput" placeholder="Ingresa las notas">
+
+    <button onclick="calcularMediaYNotasAprobadas()">Calcular</button>
+
+    <!-- Mostrar resultados aquí -->
+    <p id="mediaResultado"></p>
+    <p id="aprobadoResultado"></p>
+    <p id="notasAprobadasResultado"></p>
+
+    <script>
+        function calcularMediaYNotasAprobadas() {
+            // Obtener las notas ingresadas por el usuario
+            let notasInput = document.getElementById("notasInput").value;
+
+            // Convertir las notas a un array de números
+            let notas = notasInput.split(',').map(Number);
+
+            // Calcular la media
+            let media = calcularMedia(notas);
+
+            // Verificar si está aprobado
+            let aprobado = estaAprobado(media);
+
+            // Filtrar las notas aprobadas
+            let notasAprobadas = filtrarNotasAprobadas(notas);
+
+            // Mostrar los resultados
+            document.getElementById("mediaResultado").innerHTML = `La media es: ${media.toFixed(2)}`;
+            document.getElementById("aprobadoResultado").innerHTML = `Estado: ${aprobado ? 'Aprobado' : 'Reprobado'}`;
+            document.getElementById("notasAprobadasResultado").innerHTML = `Notas Aprobadas: ${notasAprobadas.join(', ')}`;
+        }
+
+        // Función para calcular la media
+        function calcularMedia(notas) {
+            let suma = 0;
+            for (let i = 0; i < notas.length; i++) {
+                suma += notas[i];
+            }
+            return suma / notas.length;
+        }
+
+        // Función para verificar si está aprobado
+        function estaAprobado(media) {
+            return media >= 60; // Puedes ajustar este umbral según tus criterios
+        }
+
+        // Función para filtrar las notas aprobadas
+        function filtrarNotasAprobadas(notas) {
+            return notas.filter(nota => nota >= 60);
+        }
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
