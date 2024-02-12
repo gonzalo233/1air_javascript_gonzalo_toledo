@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alumnos sin suspensos</title>
+</head>
+<body>
+    <h1>Alumnos sin suspensos</h1>
+
+    <script>
+        // Almacenar las notas y nombres de los alumnos
+        var notas = [8, 5, 9, 3, 7, 6];
+        var nombres = ["Juan", "María", "Pedro", "Ana", "Luis", "Laura"];
+
+        // Obtener los nombres de los alumnos sin suspensos
+        var aprobados = [];
+        for (var i = 0; i < nombres.length; i++) {
+            if (notas[i] >= 5) {
+                aprobados.push(nombres[i]);
+            }
+        }
+
+        // Mostrar los nombres en la página HTML
+        var resultado = document.createElement("p");
+        resultado.textContent = "Alumnos sin suspensos: " + aprobados.join(", ");
+        document.body.appendChild(resultado);
+    </script>
+</body>
+</html>
