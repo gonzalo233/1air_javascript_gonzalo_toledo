@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="pedir clave">
+    <title>Formulario de Clave y Número</title>
+</head>
+<body>
+
+    <h2>Ingrese la Clave</h2>
+    <input type="password" id="claveInput" placeholder="Ingrese su clave">
+    <button onclick="pedirNumero()">Enviar Clave</button>
+
+    <h2>Ingrese un Número</h2>
+    <input type="number" id="numeroInput" placeholder="Ingrese un número">
+    <button onclick="mostrarNumero()">Enviar Número</button>
+
+    <script>
+        function pedirNumero() {
+            alert("Clave enviada. Ahora ingrese un número.");
+        }
+
+        function mostrarNumero() {
+            var numero = document.getElementById("numeroInput").value;
+            alert("Número ingresado: " + numero);
+        }
+    </script>
+
+</body>
+</html>
