@@ -1,0 +1,34 @@
+declara un array con numeros trasladar todos los valores un lado a la izquierda excepto el primero que pasa a la ultima posicion
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trasladar Valores (excepto el primero) a la Izquierda</title>
+</head>
+<body>
+
+    <h2>Trasladar Valores (excepto el primero) a la Izquierda</h2>
+
+    <script>
+        function trasladarALaIzquierda() {
+            // Declarar un array con valores numéricos
+            var arrayNumerico = [1, 2, 3, 4, 5];
+
+            // Guardar el primer elemento
+            var primerElemento = arrayNumerico.shift();
+
+            // Añadir el primer elemento al final del array
+            arrayNumerico.push(primerElemento);
+
+            // Mostrar el array después del traslado
+            alert("Array después del traslado a la izquierda (excepto el primero): " + arrayNumerico);
+        }
+
+        // Llamar a la función al cargar la página
+        trasladarALaIzquierda();
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,43 @@
+declara un array numerico visualizar si o no si se encuentra ascendentemente ordenado
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verificar Orden Ascendente</title>
+</head>
+<body>
+
+    <h2>Verificar Orden Ascendente</h2>
+
+    <script>
+        function verificarOrden() {
+            // Declarar un array con valores numéricos
+            var arrayNumerico = [10, 20, 35, 40, 10];
+
+            // Variable para verificar si el array está ordenado ascendentemente
+            var ordenado = true;
+
+            // Verificar orden ascendente
+            for (var i = 0; i < arrayNumerico.length - 1; i++) {
+                if (arrayNumerico[i] > arrayNumerico[i + 1]) {
+                    ordenado = false;
+                    break;
+                }
+            }
+
+            // Mostrar el resultado
+            if (ordenado) {
+                alert("El array está ordenado ascendentemente.");
+            } else {
+                alert("El array NO está ordenado ascendentemente.");
+            }
+        }
+
+        // Llamar a la función al cargar la página
+        verificarOrden();
+    </script>
+
+</body>
+</html>
