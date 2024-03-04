@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="x">
+    <title>Verificar Valor en Array</title>
+</head>
+<body>
+
+    <h2>Verificar Valor en Array</h2>
+
+    <label for="inputValor">Ingrese un valor:</label>
+    <input type="number" id="inputValor" placeholder="Ingrese un número">
+
+    <button onclick="verificarValor()">Verificar</button>
+
+    <p id="resultado"></p>
+
+    <script>
+        function verificarValor() {
+            var arrayNumerico = [1, 5, 10, 15, 20];
+
+            var valorIngresado = parseInt(document.getElementById("inputValor").value);
+
+            switch (arrayNumerico.includes(valorIngresado)) {
+                case true:
+                    document.getElementById("resultado").innerText = "El valor está en el array.";
+                    break;
+                case false:
+                    document.getElementById("resultado").innerText = "El valor NO está en el array.";
+                    break;
+                default:
+                    document.getElementById("resultado").innerText = "Ingrese un valor válido.";
+            }
+        }
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verificar Valor en Array</title>
+</head>
+<body>
+
+    <h2>Verificar Valor en Array</h2>
+
+    <script>
+        function verificarValores() {
+            // Declarar un array con valores numéricos
+            var arrayNumerico = [1, 5, 10, 15, 20];
+
+            // Realizar el proceso tres veces
+            for (var i = 0; i < 3; i++) {
+                // Obtener el valor ingresado por el usuario
+                var valorIngresado = parseInt(prompt("Ingrese un valor numérico:"));
+
+                // Utilizar switch para verificar si el valor está en el array
+                switch (arrayNumerico.includes(valorIngresado)) {
+                    case true:
+                        alert("El valor está en el array.");
+                        break;
+                    case false:
+                        alert("El valor NO está en el array.");
+                        break;
+                    default:
+                        alert("Ingrese un valor válido.");
+                }
+            }
+        }
+
+        // Llamar a la función al cargar la página
+        verificarValores();
+    </script>
+
+</body>
+</html>
+
