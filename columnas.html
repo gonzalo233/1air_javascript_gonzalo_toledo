@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verificación de Números</title>
+</head>
+<body>
+
+<script>
+    // Se declara un array con valores numéricos, positivos y negativos
+    var arrayNumerico = [];
+
+    function verificarNumero() {
+        // Se pide al usuario un valor numérico
+        var valorUsuario = prompt("Ingrese un valor numérico (puede hacer clic en 'Cancelar' para finalizar):");
+
+        // Si el usuario hace clic en 'Cancelar', se detiene la ejecución
+        if (valorUsuario === null) {
+            return;
+        }
+
+        // Se convierte el valor ingresado por el usuario a un número
+        var numeroUsuario = parseFloat(valorUsuario);
+
+        // Se agrega el número ingresado al array
+        arrayNumerico.push(numeroUsuario);
+
+        // Se verifica si el número está en el array y se muestra el resultado
+        if (numeroUsuario >= 0) {
+            alert("El número " + numeroUsuario + " es positivo y está en el array.");
+        } else {
+            alert("El número " + numeroUsuario + " es negativo y está en el array.");
+        }
+    }
+
+    function mostrarResultados() {
+        // Se crea una tabla para mostrar los resultados
+        var tabla = document.getElementById("resultadoTabla");
+
+        // Se itera sobre el array y se separan los valores positivos y negativos
+        var positivos = [];
+        var negativos = [];
+
+        for (var i = 0; i < arrayNumerico.length; i++) {
+            if (arrayNumerico[i] >= 0) {
+                positivos.push(arrayNumerico[i]);
+            } else {
+                negativos.push(arrayNumerico[i]);
+            }
+        }
+
+        // Se crean filas para los valores positivos en la columna izquierda
+        for (var i = 0; i < positivos.length; i++) {
+            var filaPositivos = tabla.insertRow();
+            var celdaPositivos = filaPositivos.insertCell(0);
+            celdaPositivos.innerHTML = positivos[i];
+        }
+
+        // Se crean filas para los valores negativos en la columna derecha
+        for (var i = 0; i < negativos.length; i++) {
+            var filaNegativos = tabla.insertRow();
+            var celdaNegativos = filaNegativos.insertCell(1);
+            celdaNegativos.innerHTML = negativos[i];
+        }
+    }
+</script>
+
+<!-- Botón para verificar el número -->
+<button onclick="verificarNumero()">Verificar Número</button>
+
+<!-- Botón para mostrar los resultados -->
+<button onclick="mostrarResultados()">Mostrar Resultados</button>
+
+<!-- Tabla para mostrar los resultados -->
+<table border="1" id="resultadoTabla">
+    <tr>
+        <th>Positivos</th>
+        <th>Negativos</th>
+    </tr>
+</table>
+
+</body>
+</html>
+
