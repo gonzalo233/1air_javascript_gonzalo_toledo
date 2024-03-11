@@ -1,0 +1,95 @@
+</html>
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Test de Preguntas</title>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+
+<h1>Test de Preguntas</h1>
+
+<div id="preguntas-container"></div>
+
+<button id="verificar">Enviar</button>
+<p id="resultado"></p>
+
+<script>
+ // se pide visualizar cuantas preguntas ha acertado y tambien visuaizar las respuestas no acertadas del usuario. la Pregunta junto a la respuesta correcta
+var datosPreguntas = {
+  "preguntas": [
+  {
+      "pregunta": "¿Cuál es la capital de España?",
+      "opciones": ["Burgos", "Madrid", "Cádiz"],
+      "respuesta_correcta": "Madrid"
+    },
+    {
+      "pregunta": "¿Qué museo hay en paris?",
+      "opciones": ["Museo del Louvre", "Museo de Orsay", "Museo Rodin", "Todas son correctas"],
+      "respuesta_correcta": "Todas son correctas"
+    },
+    {
+      "pregunta": "¿Cuantas personas hay en el mundo?",
+      "opciones": ["7,888 miles de millones", "1 persona ", "500 miles de millones"],
+      "respuesta_correcta": "7,888 miles de millones"
+    }
+  ]
+};
+
+// Función para cargar las preguntas
+function cargarPreguntas() {
+  var container = $("#preguntas-container");
+
+  datosPreguntas.preguntas.forEach(function(pregunta, index) {
+    var divPregunta = $("<div>");
+    divPregunta.append("<p>" + pregunta.pregunta + "</p>");
+
+    pregunta.opciones.forEach(function(opcion) {
+      var input = $("<input>").attr({ type: "radio", name: "pregunta" + index, value: opcion });
+      var label = $("<label>").text(opcion);
+      divPregunta.append(input, label, "<br>");
+    });
+
+    container.append(divPregunta);
+  });
+}
+
+// Función para verificar las respuestas
+function verificarRespuestas() {
+  var numPreguntas = datosPreguntas.preguntas.length;
+  var numRespuestasCorrectas = 0;
+  var preguntasIncorrectas = [];
+
+  datosPreguntas.preguntas.forEach(function(pregunta, index) {
+    var respuestaSeleccionada = $("input[name='pregunta" + index + "']:checked").val();
+    if (respuestaSeleccionada === pregunta.respuesta_correcta) {
+      numRespuestasCorrectas++;
+    } else {
+      preguntasIncorrectas.push({ pregunta: pregunta.pregunta, respuesta_correcta: pregunta.respuesta_correcta });
+    }
+  });
+
+  var resultado = "Has acertado " + numRespuestasCorrectas + " de " + numPreguntas + " preguntas.";
+
+  if (preguntasIncorrectas.length > 0) {
+    resultado += "<br>Preguntas incorrectas:";
+    preguntasIncorrectas.forEach(function(pregunta) {
+      resultado += "<br>- " + pregunta.pregunta + ". Respuesta correcta: " + pregunta.respuesta_correcta;
+    });
+  }
+
+  $("#resultado").html(resultado);
+}
+
+// Llamar a la función para cargar las preguntas cuando se carga la página
+$(document).ready(function() {
+  cargarPreguntas();
+  $("#verificar").click(verificarRespuestas);
+});
+</script>
+
+</body>
+</html>
