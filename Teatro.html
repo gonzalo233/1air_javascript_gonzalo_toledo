@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Teatro</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      background-color: #f4f4f4;
+    }
+
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+
+    #teatro {
+      display: grid;
+      grid-template-columns: repeat(6, 50px);
+      grid-gap: 10px;
+      margin-top: 20px;
+    }
+
+    .butaca {
+      width: 50px;
+      height: 50px;
+      background-color: #ccc;
+      border: 1px solid #999;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .butaca.ocupada {
+      background-color: #ff0000; /* Color rojo para las butacas ocupadas */
+    }
+
+    #mensaje {
+      text-align: center;
+      margin-top: 20px;
+      font-weight: bold;
+      color: #333;
+    }
+
+    #mensaje.error {
+      color: #ff0000;
+    }
+  </style>
+</head>
+<body>
+  <h1>Teatro</h1>
+  <div id="teatro">
+    <!-- Aquí se generarán las butacas -->
+  </div>
+
+  <p id="mensaje"></p>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const teatro = document.getElementById('teatro');
+      const mensaje = document.getElementById('mensaje');
+      const totalButacas = 6 * 6; // Total de butacas
+      let butacasOcupadas = 0; // Contador de butacas ocupadas
+
+      // Crear butacas
+      for (let i = 0; i < 6; i++) {
+        for (let j = 0; j < 6; j++) {
+          const butaca = document.createElement('div');
+          butaca.classList.add('butaca');
+          butaca.dataset.fila = i;
+          butaca.dataset.columna = j;
+          butaca.addEventListener('click', toggleOcupada);
+          teatro.appendChild(butaca);
+        }
+      }
+
+      // Función para marcar/desmarcar una butaca como ocupada
+      function toggleOcupada() {
+        const fila = parseInt(this.dataset.fila);
+        const columna = parseInt(this.dataset.columna);
+        if (this.classList.contains('ocupada')) {
+          if (butacasOcupadas === totalButacas) {
+            mostrarMensajeError("Todos los asientos están reservados.");
+          } else {
+            this.classList.remove('ocupada');
+            butacasOcupadas--;
+            mostrarMensaje(`Butaca en fila ${fila + 1}, columna ${columna + 1} liberada.`);
+          }
+        } else {
+          this.classList.add('ocupada');
+          butacasOcupadas++;
+          mostrarMensaje(`Butaca en fila ${fila + 1}, columna ${columna + 1} reservada.`);
+        }
+
+        if (butacasOcupadas === totalButacas) {
+          mostrarMensaje("¡Todos los asientos están reservados!");
+        }
+      }
+
+      // Función para mostrar mensajes de éxito
+      function mostrarMensaje(mensajeTexto) {
+        mensaje.textContent = mensajeTexto;
+        mensaje.classList.remove('error');
+      }
+
+      // Función para mostrar mensajes de error
+      function mostrarMensajeError(mensajeTexto) {
+        mensaje.textContent = mensajeTexto;
+        mensaje.classList.add('error');
+      }
+    });
+  </script>
+</body>
+</html>
