@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Notas de los Alumnos</title>
+</head>
+<body>
+
+<h1>Notas de los Alumnos</h1>
+
+<h2>Notas de los Alumnos</h2>
+<div id="notasAlumnos"></div>
+
+<h2>Alumnos con Más de Dos Suspensos</h2>
+<ul id="alumnosMasDosSuspensos"></ul>
+
+<script>
+// Datos de los alumnos en formato JSON
+var datos = {
+  "alumnos": [
+    {"nombre": "Luis Ortiz", "notas": [6, 4, 7, 6, 7]},
+    {"nombre": "Ana Torres", "notas": [7, 5, 5, 8, 9]},
+    {"nombre": "Roberto Martinez", "notas": [3, 2, 4, 4, 6]},
+    {"nombre": "Laura Moreno", "notas": [5, 4, 3, 4, 8]}
+  ]
+};
+
+// Función para calcular la nota media de un alumno
+function calcularMedia(notas) {
+  var suma = notas.reduce(function(total, nota) {
+    return total + nota;
+  }, 0);
+  return suma / notas.length;
+}
+
+// Función para determinar si un alumno está aprobado o suspendido
+function estadoAlumno(media) {
+  return media >= 5 ? "Aprobado" : "Suspendido";
+}
+
+// Mostrar las notas de los alumnos
+var notasAlumnos = document.getElementById("notasAlumnos");
+datos.alumnos.forEach(function(alumno) {
+  var media = calcularMedia(alumno.notas);
+  var estado = estadoAlumno(media);
+  var alumnoDiv = document.createElement("div");
+  alumnoDiv.textContent = alumno.nombre + " - Nota Media: " + media.toFixed(2) + " - " + estado;
+  notasAlumnos.appendChild(alumnoDiv);
+
+  // b) Pasar nombres de alumnos con más de dos suspensos a una lista
+  var suspensos = alumno.notas.filter(function(nota) {
+    return nota < 5;
+  }).length;
+  if (suspensos > 2) {
+    var listItem = document.createElement("li");
+    listItem.textContent = alumno.nombre;
+    document.getElementById("alumnosMasDosSuspensos").appendChild(listItem);
+  }
+});
+</script>
+
+</body>
+</html>
