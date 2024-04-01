@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="array">
+    <title>Empleados y Sueldos</title>
+    <style>
+        /* Estilos opcionales para mejorar la apariencia */
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .empleado-mas-alto {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Empleados y Sueldos</h1>
+
+<ul id="lista-empleados">
+    <!-- Aquí se agregarán dinámicamente los empleados y sueldos -->
+</ul>
+
+<p id="empleado-mas-alto">El empleado que gana más dinero es <span class="empleado-mas-alto"></span>.</p>
+
+<script>
+    // Definimos los arrays de nombres y sueldos
+    var nombres_empleados = ["Juan", "María", "Carlos", "Ana"];
+    var sueldos = [2500, 2800, 3200, 2700];
+
+    // Buscamos el índice del sueldo más alto
+    var indice_sueldo_mas_alto = sueldos.indexOf(Math.max(...sueldos));
+
+    // Obtenemos el nombre y el sueldo del empleado que gana más dinero
+    var nombre_empleado_sueldo_mas_alto = nombres_empleados[indice_sueldo_mas_alto];
+    var sueldo_mas_alto = sueldos[indice_sueldo_mas_alto];
+
+    // Creamos la lista de empleados y sueldos
+    var lista_html = "";
+    for (var i = 0; i < nombres_empleados.length; i++) {
+        lista_html += "<li>" + nombres_empleados[i] + " - $" + sueldos[i] + "</li>";
+    }
+    document.getElementById("lista-empleados").innerHTML = lista_html;
+
+    // Actualizamos el mensaje del empleado que gana más dinero
+    document.querySelector("#empleado-mas-alto .empleado-mas-alto").textContent = nombre_empleado_sueldo_mas_alto + " con un sueldo de $" + sueldo_mas_alto;
+</script>
+
+</body>
+</html>
